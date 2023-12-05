@@ -21,7 +21,7 @@ public class menuPlay : MonoBehaviour
     public void QUitGame()
     {
         Application.Quit();
-        EditorApplication.isPlaying = false ;
+        //EditorApplication.isPlaying = false ;
 
     }
 

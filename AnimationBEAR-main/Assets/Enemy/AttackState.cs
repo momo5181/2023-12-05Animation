@@ -27,7 +27,7 @@ public float shotTimer;
         losePlayerTimer=0;  // 重置丟失玩家計時器
         moveTimer+=Time.deltaTime;// 增加移動計時器
         shotTimer+=Time.deltaTime;
-        enemy.transform.LookAt(enemy.Player.transform);
+       // enemy.transform.LookAt(enemy.Player.transform);
         if(shotTimer>enemy.fireRate)
         {
           Shoot();
