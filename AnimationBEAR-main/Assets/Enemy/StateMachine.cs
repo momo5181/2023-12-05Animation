@@ -6,7 +6,8 @@ public class StateMachine : MonoBehaviour
 {
   public BaseState activeState; // 目前處於的狀態
   public PatrolState patrolState;// 巡邏狀態
-    
+  public DeathState deathState;
+  
   public void Initialise()
   {
    patrolState=new PatrolState(); // 初始化巡邏狀態

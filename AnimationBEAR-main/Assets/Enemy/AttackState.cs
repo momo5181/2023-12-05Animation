@@ -10,14 +10,15 @@ public float shotTimer;
 
     public override void Enter()
     {
-
-
+        enemy.animator.SetBool("isShooting", true);
+       enemy.Agent.ResetPath();
+        
     }
 
     public override void Exit()
     {
-
-        
+         enemy.animator.SetBool("isShooting", false);
+        enemy.Agent.SetDestination(enemy.patrolWayPoints[enemy.waypointIndex].position);
     }
 
     public override void Perform()
@@ -27,15 +28,22 @@ public float shotTimer;
         losePlayerTimer=0;  // 重置丟失玩家計時器
         moveTimer+=Time.deltaTime;// 增加移動計時器
         shotTimer+=Time.deltaTime;
-       // enemy.transform.LookAt(enemy.Player.transform);
+     
+
+        Vector3 targetDirection = (enemy.Player.transform.position - enemy.transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        // 使用 Slerp 實現平滑轉向
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, Time.deltaTime *  enemy.RotationSpeed);
+
         if(shotTimer>enemy.fireRate)
         {
           Shoot();
         }
 
-        if(moveTimer>Random.Range(3,7))// 如果移動計時器超過了3到7的隨機範圍
+        if(moveTimer>0)// 如果移動計時器超過了3到7的隨機範圍 >Random.Range(0,0)
          {
-           enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 5 )); //當進入攻擊模式，bot會開始走位
+          // enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 5 )); //當進入攻擊模式，bot會開始走位
            moveTimer=0;// 增加移動計時器
          }  
          enemy.LastKnowPos=enemy.Player.transform.position;
@@ -44,7 +52,7 @@ public float shotTimer;
         else
         {
             losePlayerTimer+=Time.deltaTime; //增加丟失玩家計時器
-            if(losePlayerTimer>2) //當離開超出8秒，回到正常巡邏模式
+            if(losePlayerTimer>4) //當離開超出8秒，回到正常巡邏模式
               stateMachine.ChangeState(new SearchState()); //回到正常巡邏模式初版、次版改SEARCHSTATE      
         }   
     }

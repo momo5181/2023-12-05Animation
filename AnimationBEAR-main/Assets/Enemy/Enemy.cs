@@ -11,11 +11,17 @@ public class Enemy : MonoBehaviour
   public Vector3 LastKnowPos{get=>lastKnowPos;set =>lastKnowPos=value;} 
   public NavMeshAgent Agent{get => agent;}
      public float moveSpeed=5f; // 这里的 5f 是一个示例速度，你可以根据需要调整
+   public int waypointIndex { get; set; } = 0; // 初始化為0
+
 
   private Vector3 lastKnowPos;  //取得玩家最後座標
   private StateMachine stateMachine;
   private NavMeshAgent agent;
 
+   [SerializeField]
+    private float rotationSpeed = 5f;
+
+    public float RotationSpeed { get { return rotationSpeed; } }
   [Header("槍")]
   public Transform gunBarrel;
 
@@ -66,7 +72,7 @@ public class Enemy : MonoBehaviour
             {
             if(hitInfo.transform.gameObject==player)
             {
-            Debug.DrawRay(ray.origin,ray.direction*sightDistance);
+            Debug.DrawRay(ray.origin,ray.direction*sightDistance,Color.red);
             return true;
             }
           
