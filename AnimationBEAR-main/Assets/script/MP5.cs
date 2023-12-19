@@ -53,6 +53,7 @@ public class MP5 : MonoBehaviour
     public ParticleSystem muzzleFlash2;
     public GameObject impactEffect;//指定子彈接觸到地面效果
     public GameObject impactEffect2;
+    public GameObject impactEffect3;
     private float nexttimetofire = 0f;//設定觸發連續射擊時間
     public int maxAmmo = 30;//子彈數量
     private int currentAmmo;//當前子彈數量
@@ -292,7 +293,9 @@ public class MP5 : MonoBehaviour
             Destroy(impactGo2, 2f);
         }
         GameObject impactGo =Instantiate(impactEffect, hit.point , Quaternion.LookRotation(hit.normal));//子彈接觸到地面效果
-        Destroy(impactGo, 2f);//兩秒後清除子彈接觸到地面效果     
+        Destroy(impactGo, 2f);//兩秒後清除子彈接觸到地面效果   
+        GameObject impactGo3 =Instantiate(impactEffect3, hit.point , Quaternion.LookRotation(hit.normal));
+        Destroy(impactGo3, 0.5f);  
        }
     }
 }

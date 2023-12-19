@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/xvideo2.unity
+    path: Assets/Scenes/xvideo2.unity
     guid: 55427368f8184cf46873466e836254af
   - enabled: 1
     path: Assets/New Folder/Main-Menu-Example.unity
     guid: 590f605fed1463043828134c464ad21f
   - enabled: 1
-    path: Assets/DeathUI.unity
+    path: Assets/Scenes/DeathUI.unity
     guid: 1d188f60431f2c843b7c3e27877809dd
   m_configObjects: {}

@@ -54,7 +54,7 @@ stateMachine.ChangeState(new AttackState());
        
          waypointIndex++;
         else
-        waypointIndex--;
+        waypointIndex=0;
        enemy.Agent.SetDestination(enemy.patrolWayPoints[waypointIndex].position);
        
     }
